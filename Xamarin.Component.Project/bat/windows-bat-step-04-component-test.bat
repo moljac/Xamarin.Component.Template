@@ -4,6 +4,7 @@ setlocal ENABLEDELAYEDEXPANSION
 ::call "%PROGRAMFILES%\Microsoft Visual Studio 10.0\VC\vcvarsall.bat"
 call "%PROGRAMFILES(x86)%\Microsoft Visual Studio 11.0\VC\vcvarsall.bat"
 
+set IDE=devenv
 
 :: ======================================================================================
 :: Locations of the library/utility/app/control to be packaged into Xamarin.Component
@@ -32,10 +33,10 @@ del /q /s ..\test\*.*
 ::	..\%COMPONENT_NAME_FOR_PACKAGE%.xam.zip
 
 
-devenv ^
+%IDE% ^
 	..\test\%COMPONENT_NAME%-%COMPONENT_VERSION%\samples\AndroidApplication1\AndroidApplication1.sln
 
-devenv ^
+%IDE% ^
 	..\test\%COMPONENT_NAME%-%COMPONENT_VERSION%\samples\IOSApplication\IOSApplication.sln
 
 @IF %ERRORLEVEL% NEQ 0 PAUSE	

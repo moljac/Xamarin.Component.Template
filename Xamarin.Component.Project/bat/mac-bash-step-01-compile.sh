@@ -6,7 +6,7 @@ XBUILD=/Library/Frameworks/Mono.framework/Versions/3.4.0/bin/xbuild
 
 rm -fr ../bin/
 rm -fr ../obj/
-rm -fr ../lo gs/
+rm -fr ../logs/
 rm -fr ../content/lib/
 
 
@@ -18,9 +18,9 @@ mkdir ../logs/
 CONFIGURATION=Debug
 
 # Locations of the library/utility/app/control to be packaged into Xamarin.Component
-FOLDER_LIBRARY_ANDROID=../AndroidClassLibrary1
+FOLDER_LIBRARY_ANDROID=../../AndroidClassLibrary1
 FOLDER_LIBRARY_IOS=../../IOSClassLibrary
-FOLDER_APPLICATION_ANDROID=../AndroidApplication1
+FOLDER_APPLICATION_ANDROID=../../AndroidApplication1
 FOLDER_APPLICATION_IOS=../../IOSApplication1
 
 # Projects of the library/utility/app/control to be packaged into Xamarin.Component
