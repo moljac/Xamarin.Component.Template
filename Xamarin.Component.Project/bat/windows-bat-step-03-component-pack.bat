@@ -8,12 +8,15 @@ call "%PROGRAMFILES(x86)%\Microsoft Visual Studio 11.0\VC\vcvarsall.bat"
 set MONO="%PROGRAMFILES(X86)%\Mono-3.2.3\bin\mono.exe"
 set XAMARIN_COMPONENT=..\sbin\xamarin-component.exe
 
+
+
 :: ======================================================================================
 :: Locations of the library/utility/app/control to be packaged into Xamarin.Component
 ::
 ::
-set FOLDER_CONTENT_LIBS=..\content\libs
-set FOLDER_CONTENT_SAMPLES=..\content\samples
+set FOLDER_CONTENT=..\content\
+set FOLDER_CONTENT_LIB=%FOLDER_CONTENT%\lib
+set FOLDER_CONTENT_SAMPLES=%FOLDER_CONTENT%\samples
 ::
 ::
 set COMPONENT_NAME=XamarinSampleComponent
@@ -23,35 +26,41 @@ set COMPONENT_PUBLISHER="Xamarin"
 set COMPONENT_WEBSITE="http://xamarin.com"
 
 :: Icon names must contain component name!
-set COMPONENT_ICON_128x128=..\content\icons\%COMPONENT_NAME%_128x128.png
-set COMPONENT_ICON_512x512=..\content\icons\%COMPONENT_NAME%_512x512.png
+set COMPONENT_ICON_128x128=%FOLDER_CONTENT%\icons\%COMPONENT_NAME%_128x128.png
+set COMPONENT_ICON_512x512=%FOLDER_CONTENT%\icons\%COMPONENT_NAME%_512x512.png
 
 :: Documentation
-set COMPONENT_DOCUMENTATION_DETAILS="../content/Details.md"
-set COMPONENT_DOCUMENTATION_GETTINGSTARTED="../content/GettingStarted.md"
-set COMPONENT_DOCUMENTATION_LICENSE="../content/License.md"
+set COMPONENT_DOCUMENTATION_DETAILS="%FOLDER_CONTENT%\Details.md"
+set COMPONENT_DOCUMENTATION_GETTINGSTARTED="%FOLDER_CONTENT%\GettingStarted.md"
+set COMPONENT_DOCUMENTATION_LICENSE="%FOLDER_CONTENT%\License.md"
 
-:: Folders where Assemblies/DLLs will be packed ?!!?!?!?!?
+:: Folders where Assemblies\DLLs will be packed ?!!?!?!?!?
 :: change this and see XAM package
 :: 
-set COMPONENT_LIBRARY_SUBFOLDER_ANDROID="Android"
-set COMPONENT_LIBRARY_SUB_IOS="iOS"
+set COMPONENT_LIBRARY_FRAMEWORK_PLATFORM_ID_ANDROID="Android"
+set COMPONENT_LIBRARY_FRAMEWORK_PLATFORM_ID_IOS="aaiOS"
 
 :: Assembly DLL locations
-set COMPONENT_LIBRARY_PATH_ANDROID="../content/lib/Android/AndroidClassLibrary1.dll"
-set COMPONENT_LIBRARY_PATH_IOS="../content/lib/iOS/IOSClassLibrary.dll"
+set COMPONENT_LIBRARY_PATH_ANDROID="%FOLDER_CONTENT_LIB%\Android\AndroidClassLibrary1.dll"
+set COMPONENT_LIBRARY_PATH_IOS="%FOLDER_CONTENT_LIB%\iOS\IOSClassLibrary.dll"
 
 :: Samples point to Sample solution sln files
-set COMPONENT_SAMPLE_PATH_ANDROID="../content/samples/Android/AndroidApplication1.sln"
-set COMPONENT_SAMPLE_PATH_IOS="../content/samples/iOS/IOSApplication.sln"
+set COMPONENT_SAMPLE_PATH_ANDROID="%FOLDER_CONTENT_SAMPLES%\Android\AndroidApplication1.sln"
+set COMPONENT_SAMPLE_PATH_IOS="%FOLDER_CONTENT_SAMPLES%\iOS\IOSApplication.sln"
 
 :: Description for the samples. NOTE: 2 sentences minimum!!
 ::
-set COMPONENT_SAMPLE_DESCRIPTION_ANDROID="%COMPONENT_NAME% sample for Android. TODO change this - sample description needs 2 sentences"
-set COMPONENT_SAMPLE_DESCRIPTION_IOS="%COMPONENT_NAME% sample for iOS. TODO change this - sample description needs 2 sentences"
+set COMPONENT_SAMPLE_DESCRIPTION_ANDROID="${COMPONENT_NAME} to help authors. Android sample."
+set COMPONENT_SAMPLE_DESCRIPTION_IOS="${COMPONENT_NAME} to help authors. iOS sample."
 :: ======================================================================================
 
 set COMPONENT_NAME_FOR_PACKAGE=%COMPONENT_NAME%-%COMPONENT_VERSION%
+
+echo COMPONENT_LIBRARY_PATH_ANDROID="%FOLDER_CONTENT_LIB%/Android/AndroidClassLibrary1.dll"
+echo COMPONENT_LIBRARY_PATH_IOS="%FOLDER_CONTENT_LIB%/iOS/IOSClassLibrary.dll"
+
+echo %COMPONENT_LIBRARY_FRAMEWORK_PLATFORM_ID_ANDROID%:%COMPONENT_LIBRARY_PATH_ANDROID%
+echo %COMPONENT_LIBRARY_FRAMEWORK_PLATFORM_ID_IOS%:%COMPONENT_LIBRARY_PATH_IOS%
 
 del /Q ^
 		..\%COMPONENT_NAME_FOR_PACKAGE%.xam ^
@@ -59,8 +68,9 @@ del /Q ^
 
 rmdir /q /s ..\%COMPONENT_NAME_FOR_PACKAGE%.xam.zip
 
-dir /s ..\content\lib\
-dir /s ..\content\samples
+dir /s %COMPONENT_LIBRARY_PATH_ANDROID%
+dir /s %COMPONENT_LIBRARY_PATH_IOS%
+
 
 %MONO% ^
 	%XAMARIN_COMPONENT% ^
@@ -75,9 +85,9 @@ dir /s ..\content\samples
 		--getting-started=%COMPONENT_DOCUMENTATION_GETTINGSTARTED% ^
 		--icon=%COMPONENT_ICON_128x128% ^
 		--icon=%COMPONENT_ICON_512x512% ^
-		--library=%COMPONENT_LIBRARY_DESCRIPTION_ANDROID%:%COMPONENT_LIBRARY_PATH_ANDROID% ^
+		--library=%COMPONENT_LIBRARY_FRAMEWORK_PLATFORM_ID_ANDROID%:%COMPONENT_LIBRARY_PATH_ANDROID% ^
 		--sample=%COMPONENT_SAMPLE_DESCRIPTION_ANDROID%:%COMPONENT_SAMPLE_PATH_ANDROID% ^
-		--library=%COMPONENT_LIBRARY_DESCRIPTION_IOS%:%COMPONENT_LIBRARY_PATH_IOS% ^
+		--library=%COMPONENT_LIBRARY_FRAMEWORK_PLATFORM_ID_IOS%:%COMPONENT_LIBRARY_PATH_IOS% ^
 		--sample=%COMPONENT_SAMPLE_DESCRIPTION_IOS%:%COMPONENT_SAMPLE_PATH_IOS%
 	
 

@@ -48,15 +48,23 @@
     <Folder Include="test\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="bat\mac-bash-step-01-compile.sh.command" />
+    <None Include="bat\mac-bash-step-04-component-test.sh" />
+    <None Include="bat\mac-bash-step-03-component-pack.sh" />
+    <None Include="bat\mac-bash-step-02-content.sh" />
+    <None Include="bat\mac-bash-step-01-compile.sh" />
     <None Include="bat\windows-bat-step-04-component-test.bat" />
     <None Include="bat\windows-bat-step-03-component-pack.bat" />
     <None Include="bat\windows-bat-step-02-content.bat" />
     <None Include="bat\windows-bat-step-01-compile.bat" />
-    <None Include="bat\compile.sh.command" />
-    <None Include="bat\component-create.bat" />
-    <None Include="bat\component-create.sh" />
-    <None Include="bat\component-create.sh.command" />
-    <None Include="bat\git-add-ignored-libraries.bat" />
+    <None Include="bat\old\compile.sh.command" />
+    <None Include="bat\old\component-create.bat" />
+    <None Include="bat\old\component-create.sh" />
+    <None Include="bat\old\component-create.sh.command" />
+    <None Include="bat\old\git-add-ignored-libraries.bat" />
+    <None Include="content\Details.md" />
+    <None Include="content\GettingStarted.md" />
+    <None Include="content\License.md" />
     <None Include="Makefile" />
     <None Include="readme.md" />
   </ItemGroup>
