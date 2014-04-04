@@ -1,5 +1,6 @@
 #!/bin/bash
 
+IDE=/Applications/Xamarin\ Studio.app/Contents/MacOS/XamarinStudio
 
 # ======================================================================================
 # Locations of the library/utility/app/control to be packaged into Xamarin.Component
@@ -28,23 +29,16 @@ ls -al ../*.zip
 $ZIP ../${COMPONENT_NAME_FOR_PACKAGE}.zip -d../test
 ls -alR ../test/
 
-read
-
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 echo ${DIR}
 
-read
+ls -alR ../test/${COMPONENT_NAME_FOR_PACKAGE}
 
-cd ../test/Android/
-"${IDE}" AndroidApplication1.csproj
-pwd
-ls -al *.sln
+cd ../test/${COMPONENT_NAME_FOR_PACKAGE}/samples/AndroidApplication1/
+"${IDE}" AndroidApplication1.sln
 cd ${DIR}
 
-cd ${FOLDER_CONTENT_SAMPLES}/iOS/
-rm -f *.sln
-"${IDE}" IOSApplication.csproj
-pwd
-ls -al *.sln
+cd ../test/${COMPONENT_NAME_FOR_PACKAGE}/samples/IOSApplication/
+"${IDE}" IOSApplication.sln
 cd ${DIR}
 

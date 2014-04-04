@@ -41,23 +41,19 @@ ls -al $FOLDER_CONTENT_SAMPLES
 ls -al $FOLDER_CONTENT_SAMPLE_ANDROID
 ls -al $FOLDER_CONTENT_SAMPLE_IOS
 
-ls -al ${FOLDER_CONTENT_LIB}/Android/
-
 cp \
 	-fR \
 	${FOLDER_LIBRARY_ANDROID}/bin/${CONFIGURATION}/*.dll \
 	${FOLDER_CONTENT_LIB}/Android/
 
-ls -al ${FOLDER_CONTENT_LIB}/Android/
-read
+
 cp \
 	-fR \
 	${FOLDER_LIBRARY_IOS}/bin/${CONFIGURATION}/*.dll \
 	${FOLDER_CONTENT_LIB}/iOS/
 
-ls -al ${FOLDER_CONTENT_LIB}/iOS/
+ls -alR ${FOLDER_CONTENT_LIB}/
 
-read
 
 cp \
 	-fR \
@@ -70,6 +66,7 @@ cp \
 	$FOLDER_SAMPLE_IOS \
 	$FOLDER_CONTENT_SAMPLES/iOS/
 
+ls -alR ${FOLDER_CONTENT_SAMPLES}/
 
 echo
 echo ======================================================================================================
